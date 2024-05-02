@@ -22,8 +22,8 @@ export const findOne = async(id : number) : Promise<IProduct> => {
     where : { id : id }
   })
 
-  if(!product) throw new ResponseError(404, "Product Not Found")
-    
+  if(!product) throw new ResponseError<null>(404, "Product Not Found")
+
   return product
 } 
 
@@ -32,7 +32,7 @@ export const update = async(id : number, request : IProduct) : Promise<IProduct>
     where : { id }
   })
 
-  if(!check) throw new ResponseError(404, "Product Not Found")
+  if(!check) throw new ResponseError<null>(404, "Product Not Found")
 
   const updateProduct = await prisma.product.update({ 
     where : { id : id },
@@ -48,7 +48,7 @@ export const remove = async(id : number) => {
     where : { id }
   })
 
-  if(!check) throw new ResponseError(404, "Product Not Found")
+  if(!check) throw new ResponseError<null>(404, "Product Not Found")
 
   const deleteProduct = await prisma.product.delete({
     where : { id }

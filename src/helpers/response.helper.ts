@@ -1,13 +1,16 @@
-import { Context } from "elysia"
-
-export interface IResponse {
+export interface IResponse<T> {
   message : string
-  data : any
+  data : T | null
   pagination? : any
 }
 
-export const response = (set : any, data : any = null, message = 'success', status = 200, pagination = null) => {
-  let resp : IResponse = {
+export const response = <T>(
+  set : any, data : T | null = null, 
+  message = 'success', 
+  status = 200, 
+  pagination = null
+) => {
+  let resp : IResponse<T> = {
     message    : message,
     data       : data
   }
@@ -16,6 +19,5 @@ export const response = (set : any, data : any = null, message = 'success', stat
   }
 
   set.status = status
-  console.log(resp)
   return resp
 }

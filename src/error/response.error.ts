@@ -1,8 +1,8 @@
-  export class ResponseError extends Error {
+  export class ResponseError<T> extends Error {
     status : number
-    data : any
+    data : T | null
     
-    constructor(status : number, message : string, data = null){
+    constructor(status : number, message : string, data : T | null = null){
       super(message)
       this.status = status
       this.data = data
